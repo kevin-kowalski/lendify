@@ -1,5 +1,7 @@
 import { ReactNode, createContext, useState, useEffect } from "react";
-import { getUser, putUser } from "../service/apiService";
+import { putUser } from "../service/apiService";
+
+/* Modal Context */
 
 export type ModalData = {
   title: string,
@@ -15,7 +17,6 @@ export interface ModalContextProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-// Create modal context
 export const ModalContext = createContext<ModalContextProps>({
   modalData: {
     title: '',
@@ -28,18 +29,14 @@ export const ModalContext = createContext<ModalContextProps>({
   setShowModal: () => {},
 });
 
-/* Header Provider */
+/* Modal Provider */
 
-// Type definition
 interface ModalProviderProps {
   children: ReactNode;
 };
 
-// Component definition
 export default function ModalProvider ({ children }: ModalProviderProps) {
 
-  /* State Variable */
-  // const [firstLogin, setFirstLogin] = useState<boolean>()
   const [modalData, setModalData] = useState<ModalData>({
     title: '',
     text: '',
@@ -48,43 +45,28 @@ export default function ModalProvider ({ children }: ModalProviderProps) {
   });
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  /* Hooks */
-
-
-  /* Use Effects */
-  useEffect(() => {
-    getUser()
-      .then((user) => {
-        if(user) {
-          if (user.newUser) setShowModal(true)
-        }
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
   useEffect(() => {
     const localModalData: ModalData = {
       title: 'The Lending Cycle',
       text: `
       <div class="paragraph">
-        <h3>Step 1: Add an Item</h3>
+        <div class="title-wrapper"><span class="title-badge">Step 1</span><span class="title">Add an Item</span></div>
         <p>Click a photo or upload an image of the item you want to lend. Give it a lending value in credits. As a thank you for adding a new item, we'll top up your account with 100 credits!</p>
       </div>
       <div class="paragraph">
-        <h3>Step 2: Discover and Reserve</h3>
+        <div class="title-wrapper"><span class="title-badge">Step 2</span><span class="title">Discover and Reserve</span></div>
         <p>Explore items on our discover page or use the search bar to find something specific. Once you've found something you need, reserve it. You'll be directed to a chat with the owner to arrange the pickup.</p>
       </div>
       <div class="paragraph">
-        <h3>Step 3: Receive and Transfer</h3>
+        <div class="title-wrapper"><span class="title-badge">Step 3</span><span class="title">Receive and Transfer</span></div>
         <p>Meet the owner, get your item, and confirm receipt in the app. This will trigger the transfer of the agreed credits to the owner's account.</p>
       </div>
       <div class="paragraph">
-        <h3>Step 4: Return and Wrap Up</h3>
-        <p>When it's time to return the item, chat with the owner to arrange the meetup. Once the item is back with the owner and they confirm it in the app, the lending cycle concludes, and the item becomes available for lending again.
-        </p>
-        </div>
-        <div class="paragraph">
-        <h3>Step 5: Be nice!</h3>
+        <div class="title-wrapper"><span class="title-badge">Step 4</span><span class="title">Return and Wrap Up</span></div>
+        <p>When it's time to return the item, chat with the owner to arrange the meetup. Once the item is back with the owner and they confirm it in the app, the lending cycle concludes, and the item becomes available for lending again.</p>
+      </div>
+      <div class="paragraph">
+        <div class="title-wrapper"><span class="title-badge">Step 5</span><span class="title">Be nice!</span></div>
         <p>Remember, our platform thrives on trust and community. Please respect the items and the people you interact with. Happy sharing!</p>
       </div>
     `,
@@ -100,8 +82,6 @@ export default function ModalProvider ({ children }: ModalProviderProps) {
     };
     setModalData(localModalData);
   }, [setShowModal]);
-
-  /* Constant Definition */
 
   const values: ModalContextProps = {
     modalData,

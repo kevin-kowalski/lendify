@@ -32,8 +32,6 @@ export default function TabNavigation () {
   // Helper for calculating the sum of unseen notifications
   function sumUnseenNotifications (notifications: Chat) {
     return notifications.messages.reduce((acc, message) => {
-      console.log(message.notification);
-
       return message.notification?.seen ? acc : acc + 1;
     }, 0);
   }

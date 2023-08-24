@@ -15,7 +15,7 @@ export default function CollectionList ({ collections }: CollectionListProps) {
   /* Render Component */
 
   return (<>
-    <div className="collection-list">
+    <div className="collection-list appear">
       {collections.map((collection) => (
         <Link key={collection._id} to={`/collection/${collection._id}`}>
           <CollectionListItem key={collection._id} collection={collection} />

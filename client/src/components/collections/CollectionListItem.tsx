@@ -13,7 +13,7 @@ export default function CollectionListItem ({ collection }: CollectionListItemPr
   /* Render Component */
 
   return (<>
-    <div className="list-item">
+    <div className="list-item appear">
       <div className="preview-container">
       {collection.items!.map((item, index) => (
         <div key={index} className="item-preview" style={{backgroundImage: `url(${item.img_url})`}}></div>

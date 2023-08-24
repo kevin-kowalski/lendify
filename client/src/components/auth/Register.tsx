@@ -21,10 +21,6 @@ export interface Address {
 
 function Register() {
 
-  const navigate = useNavigate()
-
-  /* State Variables */
-
   const [registerFormData, setRegisterFormData] = useState<RegisterFormData>({
     username: '',
     password: '',
@@ -37,17 +33,14 @@ function Register() {
     },
   });
 
-  /* Hooks */
-
   const { setActionButtonGroupData } = useContext<HeaderContextProps>(HeaderContext);
-
-  /* Use Effects */
+  const navigate = useNavigate()
 
   useEffect(() => {
     setActionButtonGroupData([]);
   }, []);
 
-  /* Handler Functions */
+  /* Event Handlers */
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = event.target;
@@ -88,7 +81,6 @@ function Register() {
         });
       })
       .catch((error) => console.log(error));
-
   };
 
   /* Render Component */

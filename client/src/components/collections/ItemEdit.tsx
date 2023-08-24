@@ -124,7 +124,7 @@ export default function ItemEdit() {
   /* Render Component */
 
   return (<>
-    <div className="item-edit">
+    <div className="item-edit appear">
       <form onSubmit={handleSubmit}>
         <label>
           Name:

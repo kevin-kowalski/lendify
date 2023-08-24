@@ -17,8 +17,8 @@ export default function Notifications ({ notifications, setShowNotifications, se
 
   return (<>
     {notifications && (<>
-      <div className="notifications-overlay" onClick={handleClickOverlay}></div>
-      <div className="notifications-list">
+      <div className="notifications-overlay appear-fast" onClick={handleClickOverlay}></div>
+      <div className="notifications-list appear">
         {!notifications.messages.some((notification) => !notification.notification?.seen) && (
           <div className="notification-item" onClick={handleClickOverlay}>
             <div className="body">No new notifications</div>

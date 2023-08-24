@@ -107,7 +107,7 @@ export default function ChatSingle ({ currentChatId, currentItemId }: ChatSingle
   /* Render Component */
 
   return (<>
-    <div className="chat">
+    <div className="chat appear">
 
       <div className="chat-header">
         <h1>{currentChat && currentChat.item.name}</h1>

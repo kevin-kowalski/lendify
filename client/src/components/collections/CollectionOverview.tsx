@@ -1,22 +1,17 @@
 import { useContext, useEffect, useState } from "react"
 import { HeaderContext, HeaderContextProps } from "../../contexts/HeaderContext"
-import { Link, useAsyncError, useNavigate } from "react-router-dom";
-import { ActionButtonGroupData, Collection, User } from "../../types/types";
-import { getAllCollections, getUser, putUser } from "../../service/apiService";
+import { Link, useNavigate } from "react-router-dom";
+import { ActionButtonGroupData, Collection } from "../../types/types";
+import { getAllCollections } from "../../service/apiService";
 import CollectionList from "./CollectionList";
-import { ModalContext, ModalContextProps, ModalData } from "../../contexts/ModalContext";
 
 
 export default function CollectionOverview () {
 
   const [collections, setCollections] = useState<Collection[] | null>(null);
 
-  /* Hooks */
-
   const { setActionButtonGroupData } = useContext<HeaderContextProps>(HeaderContext);
   const navigate = useNavigate();
-
-  /* Use Effect */
 
   useEffect(() => {
     getAllCollections()
@@ -34,13 +29,6 @@ export default function CollectionOverview () {
           navigate('/collection/add');
         }
       },
-      // {
-      //   type: 'notifications',
-      //   title: 'Notifications',
-      //   action: () => {
-      //     navigate('/collection/add');
-      //   }
-      // },
       {
         type: 'profile',
         title: '',
@@ -55,8 +43,8 @@ export default function CollectionOverview () {
   /* Render Component */
 
   return (<>
-  
-    <div className="collection-overview">
+
+    <div className="collection-overview appear">
       {collections && (<>
         <div className="static-collections">
           {collections
@@ -66,7 +54,7 @@ export default function CollectionOverview () {
               || collection.name?.toLowerCase() === 'reserved'
               || collection.name?.toLowerCase() === 'borrowed'
             ))
-            .map((collection, index) => (<>
+            .map((collection, index) => (<div key={index}>
               {collection.items && collection.items[0] && (
                 <Link to={`/collection/${collection._id}`} key={index}>
                   <div className="static-collection-preview">
@@ -84,7 +72,7 @@ export default function CollectionOverview () {
                   <h2>{collection.name}</h2>
                 </div>
               )}
-            </>))
+            </div>))
           }
         </div>
       </>)}

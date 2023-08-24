@@ -20,7 +20,6 @@ function Login() {
     username: '',
     password: '',
   });
-  const [error, setError] = useState<string>('');
 
   /* Hooks */
 
@@ -59,10 +58,10 @@ function Login() {
           expiresIn: 60 * 60,
           tokenType: 'Bearer',
           authState: { _id: response.user._id }
-        });
-        navigate('/')
+        })
+        navigate('/');
       } else {
-        setError(response.message)
+        console.log(response.message);
       }
     } catch (err) {
       console.log('Error:', err)
