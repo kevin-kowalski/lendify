@@ -27,7 +27,7 @@ export default function Discover () {
   /* Render Component */
 
   return (<>
-    <div className="discover">
+    <div className="discover appear">
       <Search setItems={setItems} setSearchActive={setSearchActive} />
       <h1>Around you</h1>
       <ItemList items={items} />

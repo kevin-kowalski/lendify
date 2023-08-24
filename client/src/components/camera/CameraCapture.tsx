@@ -49,7 +49,7 @@ export default function CameraCapture ({ onImageCapture }: CameraCaptureProps) {
   };
 
   return (<>
-    <div className='camera-capture'>
+    <div className='camera-capture appear'>
       {!capturedImage && (<>
         <Webcam
           audio={false}

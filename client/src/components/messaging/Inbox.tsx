@@ -39,7 +39,7 @@ function InboxCombined() {
   /* Render Component */
 
   return (<>
-    <div className="inbox">
+    <div className="inbox appear">
       <div className="chat-preview-container">
       {chats && chats.map((chat, index) => (
         <div className={`chat-preview-wrapper ${chat.id === currentChatId ? 'active' : ''}`} key={index}>

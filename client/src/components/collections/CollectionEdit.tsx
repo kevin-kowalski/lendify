@@ -105,7 +105,7 @@ export default function CollectionEdit () {
   /* Render Component */
 
   return (<>
-    <div className="collection-edit">
+    <div className="collection-edit appear">
       <form>
         {currentCollection[0] && (
           <input

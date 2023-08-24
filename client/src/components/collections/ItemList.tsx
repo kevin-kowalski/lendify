@@ -15,7 +15,7 @@ export default function ItemList ({ items }: ItemListProps) {
   /* Render Component */
 
   return (<>
-    <div className="collection-list">
+    <div className="collection-list appear">
       {items && items.map((item, index) => (
         <Link key={index} to={`/item/${item._id}`}>
           <ItemListItem item={item} />

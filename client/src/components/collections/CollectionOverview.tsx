@@ -44,7 +44,7 @@ export default function CollectionOverview () {
 
   return (<>
 
-    <div className="collection-overview">
+    <div className="collection-overview appear">
       {collections && (<>
         <div className="static-collections">
           {collections

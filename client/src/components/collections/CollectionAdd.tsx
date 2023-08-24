@@ -52,21 +52,23 @@ export default function CollectionAdd () {
   /* Render Component */
 
   return (<>
-  <form onSubmit={handleSubmit}>
-    <input
-      type="text"
-      name="collectionName"
-      placeholder="Name"
-      value={inputValue}
-      onChange={handleChange}
-      autoComplete="off"
-    />
-    <div>
-      <CheckList items={items!} setSelectedItems={setSelectedItems}/>
-    </div>
-    <div>
-      <button type="submit" className="button styled full large">Create Collection</button>
-    </div>
-  </form>
+  <div className="collection-add appear">
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="collectionName"
+        placeholder="Name"
+        value={inputValue}
+        onChange={handleChange}
+        autoComplete="off"
+      />
+      <div>
+        <CheckList items={items!} setSelectedItems={setSelectedItems}/>
+      </div>
+      <div>
+        <button type="submit" className="button styled full large">Create Collection</button>
+      </div>
+    </form>
+  </div>
   </>)
 }

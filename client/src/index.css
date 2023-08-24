@@ -1112,3 +1112,21 @@ input:checked + .list-item::after {
     transform: rotate(360deg);
   }
 }
+
+/* Animations */
+
+.appear {
+  animation: appear .5s forwards ease-in-out;
+}
+.appear-fast {
+  animation: appear .2s forwards ease-in-out;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

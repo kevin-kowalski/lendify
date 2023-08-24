@@ -94,7 +94,7 @@ export default function ItemAdd() {
   return (<>
     {!formData.img_url && <CameraCapture onImageCapture={handleImageCapture} />}
     {formData.img_url && (
-      <div className="item-add">
+      <div className="item-add appear">
         <form onSubmit={handleSubmit}>
           <label>
             Name:
