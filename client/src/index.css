@@ -1034,18 +1034,37 @@ input:checked + .list-item::after {
 .modal{
   display: flex;
   flex-direction: column;
-  gap: var(--p-2xl);
+  gap: var(--p-xl);
 
   align-items: start;
   max-height: 100%;
   overflow: scroll;
   text-align: left;
-  padding: var(--p-xl);
+  padding: var(--p-2xl) var(--p-xl);
 }
 
-.modal h1 {
+.modal .title-wrapper {
+  display: flex;
+  align-items: start;
+  gap: var(--p-sm);
+}
+
+.modal .title {
   color: var(--c-primary-1);
-  font-size: var(--p-xl);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.modal .title-badge {
+  color: var(--c-primary-2);
+  font-size: 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--c-primary-2);
+  border-color: var(--c-primary-2);
+  padding: var(--p-2xs) var(--p-sm);
+  white-space: nowrap;
+  text-transform: uppercase;
 }
 
 .modal-text{
@@ -1055,6 +1074,9 @@ input:checked + .list-item::after {
 }
 
 .modal .paragraph {
+  display: flex;
+  flex-direction: column;
+  gap: var(--p-md);
   background-color: white;
   padding: var(--p-lg);
   box-shadow: var(--box-shadow);

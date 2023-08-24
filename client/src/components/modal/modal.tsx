@@ -1,9 +1,19 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ModalContext, ModalContextProps } from "../../contexts/ModalContext";
+import { getUser } from "../../service/apiService";
 
 export default function Modal () {
 
-  const { modalData, showModal } = useContext<ModalContextProps>(ModalContext);
+  const { modalData, showModal, setShowModal } = useContext<ModalContextProps>(ModalContext);
+
+  // Check if the user is new, and in that case, show the modal
+  useEffect(() => {
+    getUser()
+      .then((user) => {
+        if (user.newUser) setShowModal(true);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   /* Render Component */
 

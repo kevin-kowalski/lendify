@@ -8,18 +8,11 @@ import { useSignOut } from 'react-auth-kit'
 
 function Profile() {
 
-  /* State Variables */
-
   const [userData, setUserData] = useState<User | null>(null)
-
-  /* Hooks */
 
   const { setActionButtonGroupData } = useContext<HeaderContextProps>(HeaderContext);
   const navigate = useNavigate();
   const signOut = useSignOut();
-
-
-  /* Use Effect */
 
   useEffect(() => {
     getUser()

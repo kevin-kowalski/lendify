@@ -20,8 +20,6 @@ export default function ItemAdd() {
   const { setActionButtonGroupData } = useContext<HeaderContextProps>(HeaderContext);
   const navigate = useNavigate();
 
-  /* Use Effects */
-
   useEffect(() => {
     setActionButtonGroupData([]);
   }, []);
@@ -41,7 +39,7 @@ export default function ItemAdd() {
       .catch((error) => console.log(error));
   }, []);
 
-  /* Handler Functions */
+  /* Event Handlers */
 
   // When the user took an image
   const handleImageCapture = (imageSrc: string): void => {
