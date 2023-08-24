@@ -149,7 +149,10 @@ export default function ItemSingle () {
   function handleClickReserve () {
     if (item && item._id) {
       putItemReserve(item._id)
-        .then(() => navigate('/inbox'))
+        .then(() => {
+          // navigate('/inbox')
+          window.location.href = '/inbox';
+        })
         .catch((error) => console.log(error));
     }
   };
@@ -193,7 +196,9 @@ export default function ItemSingle () {
           .then(() => {
             item.borrowed = false;
             item.available = true;
-            navigate('/collections')
+            // navigate('/collections')
+            window.location.href = '/collections';
+
           })
           .catch((error) => console.log(error));
       }

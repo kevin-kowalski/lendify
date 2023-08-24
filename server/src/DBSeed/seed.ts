@@ -45,7 +45,7 @@ async function seedDatabase() {
         latitude: 52.5075201,
         longitude: 13.3778567,
       },
-      credits: 500,
+      credits: 257500,
       reputation: 5,
       newUser: false
     });
@@ -143,7 +143,7 @@ async function seedDatabase() {
       img_url: 'https://www.electrolux.com.my/globalassets/appliances/vacuum-clearner/z931-fr-1500x1500.png?preset=medium',
       value: 200,
       description: 'It is no Dyson but it will do.',
-      lendable: false,
+      lendable: true,
       available: true,
       collections: [collection6._id, collection11._id],
       borrowed: false,
@@ -155,7 +155,7 @@ async function seedDatabase() {
       img_url: 'https://d1b5h9psu9yexj.cloudfront.net/13147/Bosch-PS31-2A-12-Volt-Max-Drill-Driver-Kit_20181127-194416_full.jpg',
       value: 200,
       description: 'Very nice Bosch drill',
-      lendable: false,
+      lendable: true,
       available: true,
       collections: [collection1._id, collection5._id],
       borrowed: false,
