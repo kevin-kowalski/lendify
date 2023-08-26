@@ -37,7 +37,7 @@ Remember, our platform thrives on trust and community. Please respect the items 
 1. Clone this repo and enter!
 
    ```bash
-   git clone https://github.com/kevin-kowalski/project-lent.git
+   git clone https://github.com/kevin-kowalski/lendify.git
    ```
 
 2. Install dependencies.
