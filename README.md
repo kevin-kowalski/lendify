@@ -41,7 +41,7 @@ Except for the regular suspects: git, Node, npm, you need nothing else to work o
 
    ```bash
    npm run start # Run the backend server
-   cd ./client  # Change into the client directory and run the frontend server
+   cd ../client  # Change into the client directory and run the frontend server
    npm start
    ```
 
