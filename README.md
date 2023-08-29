@@ -1,7 +1,7 @@
 <img src="images/logo_readme_hor.png" width="140" />
 
 <p align="center">
-  <img src="images/screens_readme.png" width="1000" />
+  <img src="images/screens_readme_large.png" width="960" />
 </p>
 
 # Share More, Own Less - Welcome to the Future of Lending!
