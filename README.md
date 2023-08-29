@@ -19,9 +19,9 @@ Lendify is a community marketplace platform with a focus on lending where users 
 2. Install dependencies.
 
    ```bash
-   cd client  # ! Change into the client folder !
+   cd client  # Change into the client directory
    npm install
-   cd ../server  # ! Change into the server folder !
+   cd ../server  # Change into the server directory
    npm install
    ```
 
@@ -40,8 +40,8 @@ Except for the regular suspects: git, Node, npm, you need nothing else to work o
 2. Run the application.
 
    ```bash
-   npm run start # ! Run the backend server !
-   cd ./client  # ! Change into the client folder and run the frontend server !
+   npm run start # Run the backend server
+   cd ./client  # Change into the client directory and run the frontend server
    npm start
    ```
 
