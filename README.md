@@ -1,5 +1,9 @@
 <img src="images/logo_readme_hor.png" width="140" />
 
+<p align="center">
+  <img src="images/screens_readme.png" width="1000" />
+</p>
+
 # Share More, Own Less - Welcome to the Future of Lending!
 We're revolutionizing the way you use and share everyday items, making ownership an option, not a necessity.
 
