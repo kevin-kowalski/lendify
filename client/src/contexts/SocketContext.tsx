@@ -157,7 +157,7 @@ export default function SocketProvider ({ children }: SocketProviderProps) {
 
   // Initialize the socket connection and its listeners
   useEffect(() => {
-    socketRef.current = io('http://localhost:5001');
+    socketRef.current = io(process.env.REACT_APP_BASE_URL as string);
     const socket = socketRef.current;
 
     socket.on('connect', () => {
