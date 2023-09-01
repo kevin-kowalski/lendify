@@ -27,7 +27,7 @@ const io = new Server(server, serverOptions);
 app.use(cors({
   origin: 'https://develop--grand-tapioca-07d51d.netlify.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  headers: ['Content-Type', 'Authorization'],
+  headers: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'Access-Control-Allow-Origin'],
   credentials: true,
 }));
 app.use(parser());
