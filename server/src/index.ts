@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import parser from 'koa-bodyparser';
 import cors from 'koa-cors';
+import proxy from 'koa-proxies';
 import { Server } from 'socket.io';
 import http from 'http';
 import dotenv from 'dotenv';
@@ -18,7 +19,7 @@ const serverOptions = {
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'Access-Control-Allow-Origin'],
     credentials: true,
-    preflightContinue: true,
+    // preflightContinue: true,
   },
 };
 const io = new Server(server, serverOptions);
@@ -30,6 +31,13 @@ app.use(cors({
   headers: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Credentials'],
   credentials: true,
 }));
+app.use(
+  proxy('/', {
+    target: 'https://lendify-production.up.railway.app',
+    changeOrigin: true,
+    logs: true,
+  })
+);
 app.use(parser());
 app.use(router.routes());
 app.use(router.allowedMethods());
