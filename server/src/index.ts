@@ -14,7 +14,7 @@ const app = new Koa();
 const server = http.createServer(app.callback());
 const serverOptions = {
   cors: {
-    origin: 'https://develop--grand-tapioca-07d51d.netlify.app', // Replace with the actual origin of your frontend application
+    origin: process.env.CLIENT_URL,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'Access-Control-Allow-Origin'],
     credentials: true,
@@ -25,7 +25,7 @@ const io = new Server(server, serverOptions);
 
 // Middlewares
 app.use(cors({
-  origin: 'https://develop--grand-tapioca-07d51d.netlify.app',
+  origin: process.env.CLIENT_URL,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   headers: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'Access-Control-Allow-Origin'],
   credentials: true,
