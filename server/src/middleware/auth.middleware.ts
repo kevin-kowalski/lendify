@@ -8,6 +8,8 @@ const secretKey = process.env.JWT_SECRET as string;
 
 export async function authenticate (ctx: Context, next: Next): Promise<void> {
   const token = ctx.headers.cookie?.split(';')[0].split('=')[1];
+  console.log(token);
+  console.log(ctx.headers.cookie);
 
   if (!token) ctx.throw(401, { message: 'No token provided.' });
   
