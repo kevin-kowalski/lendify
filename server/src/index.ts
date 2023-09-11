@@ -1,6 +1,6 @@
 import Koa from 'koa';
 import parser from 'koa-bodyparser';
-import cors from 'koa-cors';
+import cors from '@koa/cors';
 import { Server } from 'socket.io';
 import http from 'http';
 import dotenv from 'dotenv';
