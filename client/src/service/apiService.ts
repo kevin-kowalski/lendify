@@ -30,6 +30,14 @@ function getCookieValue(cookieName : string)  {
   return '';
 }
 
+// Heper function to get the auhtorization token to send with each request
+function getToken() {
+  return document.cookie
+    .split('; ')
+    .find(row => row.startsWith('_auth='))
+    ?.split('=')[1];
+}
+
 export async function getUser(): Promise<User> {
   try{
     const userIdObject = getCookieValue('_auth_state');
@@ -52,10 +60,11 @@ export async function getUser(): Promise<User> {
 
 export async function putUser(profileEditData : ProfileEditData) {
   try {
-
+    const token = getToken();
     const response = await fetch(`${baseUrl}/user`, {
       method: 'PUT',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(profileEditData),
@@ -131,10 +140,7 @@ export async function loginUser (loginFormData: LoginFormData) {
 
 export async function getAllCollections (): Promise<Collection[]> {
   try {
-    const token = document.cookie
-      .split('; ')
-      .find(row => row.startsWith('_auth='))
-      ?.split('=')[1];
+    const token = getToken();
     const response = await fetch(`${baseUrl}/collection/all`, {
       headers: {
       'Authorization': `Bearer ${token}`,
@@ -158,9 +164,11 @@ export async function getAllCollections (): Promise<Collection[]> {
 
 export async function postNewCollection (itemName: string, itemIds: string[]): Promise<Item> {
   try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/collection`, {
       method: 'POST',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({itemName, itemIds}),
@@ -182,9 +190,11 @@ export async function postNewCollection (itemName: string, itemIds: string[]): P
 
 export async function changeCollectionName (collectionName: string, collectionId: string): Promise<Item> {
   try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/collection/${collectionId}/name`, {
       method: 'PUT',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({newName: collectionName}),
@@ -206,9 +216,12 @@ export async function changeCollectionName (collectionName: string, collectionId
 
   export async function addItemsToCollections (itemIds: string[], collectionIds: string[]): Promise<Item> {
     try {
+      
+      const token = getToken();
       const response = await fetch(`${baseUrl}/collection/addItems`, {
         method: 'PUT',
         headers: {
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({itemIds, collectionIds}),
@@ -230,8 +243,13 @@ export async function changeCollectionName (collectionName: string, collectionId
 
 export async function deleteCollection (collectionId: string): Promise<Item> {
   try {
+    const token = getToken();
+          
     const response = await fetch(`${baseUrl}/collection/${collectionId}`, {
       method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
       credentials: 'include',
     });
 
@@ -250,9 +268,12 @@ export async function deleteCollection (collectionId: string): Promise<Item> {
 
 export async function deleteItemsFromCollection (itemIds: string[], collectionId: string): Promise<Item> {
   try {
+    const token = getToken();
+          
     const response = await fetch(`${baseUrl}/collection/${collectionId}/removeitems`, {
       method: 'PUT',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       credentials: 'include',
@@ -276,7 +297,12 @@ export async function deleteItemsFromCollection (itemIds: string[], collectionId
 
 export async function getAllItems (): Promise<Item[]> {
   try {
+    const token = getToken();
+          
     const response = await fetch(`${baseUrl}/item/all`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
       credentials: 'include'
     });
 
@@ -295,7 +321,12 @@ export async function getAllItems (): Promise<Item[]> {
 
 export async function getItemsByCollection (id: string): Promise<Item[]> {
   try {
+    const token = getToken();
+          
     const response = await fetch(`${baseUrl}/item/all/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
       credentials: 'include'
     });
 
@@ -314,7 +345,12 @@ export async function getItemsByCollection (id: string): Promise<Item[]> {
 
 export async function getItemsDiscover (): Promise<Item[]> {
   try {
+    const token = getToken();
+          
     const response = await fetch(`${baseUrl}/item/all/discover`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
       credentials: 'include'
     });
 
@@ -334,8 +370,12 @@ export async function getItemsDiscover (): Promise<Item[]> {
 export async function getItemsByQuery (query: string): Promise<Item[]> {
   try {
     const encodedQuery = encodeURIComponent(query);
-
+    const token = getToken();
+          
     const response = await fetch(`${baseUrl}/search?query=${encodedQuery}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
       credentials: 'include'
     });
 
@@ -354,7 +394,11 @@ export async function getItemsByQuery (query: string): Promise<Item[]> {
 
 export async function getItemById (id: string): Promise<Item> {
   try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/item/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
       credentials: 'include'
     });
 
@@ -373,9 +417,11 @@ export async function getItemById (id: string): Promise<Item> {
 
 export async function postItem (item: Item): Promise<Item> {
   try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/item`, {
       method: 'POST',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(item),
@@ -397,9 +443,11 @@ export async function postItem (item: Item): Promise<Item> {
 
 export async function putItemById (id: string, item: Item): Promise<Item> {
   try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/item/${id}`, {
       method: 'PUT',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(item),
@@ -421,9 +469,11 @@ export async function putItemById (id: string, item: Item): Promise<Item> {
 
 export async function putItemReserve (id: string): Promise<Chat> {
   try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/item/${id}/reserve`, {
       method: 'PUT',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({}),
@@ -445,9 +495,11 @@ export async function putItemReserve (id: string): Promise<Chat> {
 
 export async function receiveItemById (id: string) {
   try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/item/${id}/receive`, {
       method: 'PUT',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({}),
@@ -469,9 +521,11 @@ export async function receiveItemById (id: string) {
 
 export async function returnItemById (id: string) {
   try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/item/${id}/return`, {
       method: 'PUT',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({}),
@@ -492,9 +546,11 @@ export async function returnItemById (id: string) {
 
 export async function cancelItemById (id: string) {
   try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/item/${id}/cancel`, {
       method: 'PUT',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({}),
@@ -515,7 +571,11 @@ export async function cancelItemById (id: string) {
 
 export async function deleteItem (id: string): Promise<Item> {
   try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/item/${id}`, {
+      headers:{
+        'Authorization': `Bearer ${token}`,
+      },
       method: 'DELETE',
       credentials: 'include'
     });
@@ -537,7 +597,11 @@ export async function deleteItem (id: string): Promise<Item> {
 
 export async function getAllChats (): Promise<ChatPreview[]> {
   try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/inbox`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
       credentials: 'include'
     });
 
@@ -556,7 +620,11 @@ export async function getAllChats (): Promise<ChatPreview[]> {
 
 export async function getChatbyId (chatId: string | undefined): Promise<Chat> {
   try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/inbox/${chatId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
       credentials: 'include'
     });
 
@@ -575,8 +643,12 @@ export async function getChatbyId (chatId: string | undefined): Promise<Chat> {
 
 export async function deleteChat(chatId: string) {
   try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/inbox/${chatId}`, {
       method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
       credentials: 'include'
     });
 
@@ -593,10 +665,12 @@ export async function deleteChat(chatId: string) {
 }
 
 export async function postMessage (currentMessageData: MessageToSend, chatId: string) {
-  try{
+  try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/inbox/${chatId}`, {
       method: 'POST',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(currentMessageData),
@@ -617,9 +691,11 @@ export async function postMessage (currentMessageData: MessageToSend, chatId: st
 
 export async function putMessage(message: Message) {
   try {
+    const token = getToken();
     const response = await fetch(`${baseUrl}/inbox/message/${message.id}`, {
       method: 'PUT',
       headers: {
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(message),
