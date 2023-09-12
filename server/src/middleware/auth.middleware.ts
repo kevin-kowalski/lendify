@@ -25,12 +25,14 @@ export async function authenticate (ctx: Context, next: Next): Promise<void> {
   
   try {
     const decodedToken = jwt.verify(token, secretKey) as JwtPayload;
+    console.log(decodedToken);
     const userExists = await findUserById(decodedToken.userId);
+    console.log(userExists);
 
     if (userExists) {
       ctx.userId = decodedToken.userId;
       ctx.location = decodedToken.geoLocation;
-      next()
+      await next();
     }
   } catch (error) {
     ctx.throw(401, { message: 'Invalid token.' });
