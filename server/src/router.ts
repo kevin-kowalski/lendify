@@ -22,7 +22,7 @@ router.delete('/user', authenticate, user.deleteUser);
 
 // collection routes
 
-router.get('/collection/all', collection.getAllCollections);
+router.get('/collection/all', authenticate, collection.getAllCollections);
 router.post('/collection', authenticate, collection.createCollection);
 router.delete('/collection/:id', authenticate, collection.deleteCollection);
 router.put('/collection/:id/removeitems', authenticate, collection.removeItemsFromCollection);
