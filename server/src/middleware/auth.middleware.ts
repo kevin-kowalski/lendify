@@ -7,9 +7,19 @@ dotenv.config();
 const secretKey = process.env.JWT_SECRET as string;
 
 export async function authenticate (ctx: Context, next: Next): Promise<void> {
-  const token = ctx.headers.cookie?.split(';')[0].split('=')[1];
+  const authHeader = ctx.headers.authorization;
+  
+  if (!authHeader) ctx.throw(401, { message: 'No token provided.' });
+
+  const [bearer, token] = authHeader.split(' ');
+
+  if (bearer !== 'Bearer' || !token) {
+    ctx.throw(401, { message: 'Invalid token format.' });
+  }
+
   console.log('token', token);
-  console.log('cookie', ctx.headers.cookie);
+
+  // const token = ctx.headers.cookie?.split(';')[0].split('=')[1];
 
   if (!token) ctx.throw(401, { message: 'No token provided.' });
   

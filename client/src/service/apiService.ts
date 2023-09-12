@@ -131,7 +131,15 @@ export async function loginUser (loginFormData: LoginFormData) {
 
 export async function getAllCollections (): Promise<Collection[]> {
   try {
+    const token = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('_auth='))
+      ?.split('=')[1];
     const response = await fetch(`${baseUrl}/collection/all`, {
+      headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      },
       credentials: 'include'
     });
 
