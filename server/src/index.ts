@@ -25,17 +25,17 @@ const serverOptions = {
 const io = new Server(server, serverOptions);
 
 // Middlewares
-app.use(
-  proxy('/', {
-    target: 'https://lendify-production.up.railway.app',
-    changeOrigin: true,
-    logs: true,
-  })
-);
+// app.use(
+//   proxy('/', {
+//     target: 'https://lendify-production.up.railway.app',
+//     changeOrigin: true,
+//     logs: true,
+//   })
+// );
 
 app.use(cors({
   origin: process.env.CLIENT_URL,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   headers: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Credentials'],
   credentials: true,
 }));
