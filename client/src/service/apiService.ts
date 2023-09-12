@@ -43,8 +43,12 @@ export async function getUser(): Promise<User> {
     const userIdObject = getCookieValue('_auth_state');
     const parsedUserIdObject = JSON.parse(userIdObject);
     const userId = parsedUserIdObject._id;
-
-    const response = await fetch(`${baseUrl}/user/${userId}`);
+    const token = getToken();
+    const response = await fetch(`${baseUrl}/user/${userId}`, {
+       headers: {
+        'Authorization': `Bearer ${token}`
+       }
+    });
 
     const data = await response.json();
 
