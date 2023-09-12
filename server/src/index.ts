@@ -24,22 +24,19 @@ const serverOptions = {
 const io = new Server(server, serverOptions);
 
 // Middlewares
-app.use(cors({
-  origin: process.env.CLIENT_URL,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  headers: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Credentials'],
-  credentials: true,
-}));
+// app.use(cors({
+//   origin: process.env.CLIENT_URL,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   headers: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Credentials'],
+//   credentials: true,
+// }));
 
 app.use(async (ctx, next) => {
-  if (ctx.method === 'OPTIONS') {
-    ctx.set('Access-Control-Allow-Origin', process.env.CLIENT_URL!);
-    ctx.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    ctx.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    ctx.status = 204; // No Content
-  } else {
-    await next();
-  }
+  ctx.set('Access-Control-Allow-Origin', 'https://grand-tapioca-07d51d.netlify.app');
+  ctx.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  ctx.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  ctx.set('Access-Control-Allow-Credentials', 'true');
+  await next();
 });
 
 app.use(parser());
