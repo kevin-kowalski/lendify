@@ -30,6 +30,18 @@ app.use(cors({
   headers: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Credentials'],
   credentials: true,
 }));
+
+app.use(async (ctx, next) => {
+  if (ctx.method === 'OPTIONS') {
+    ctx.set('Access-Control-Allow-Origin', process.env.CLIENT_URL!);
+    ctx.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    ctx.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    ctx.status = 204; // No Content
+  } else {
+    await next();
+  }
+});
+
 app.use(parser());
 app.use(router.routes());
 app.use(router.allowedMethods());
