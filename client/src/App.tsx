@@ -160,7 +160,7 @@ export default function App() {
       <AuthProvider
         authType={'cookie'}
         authName={'_auth'}
-        cookieDomain={window.location.hostname}
+        cookieDomain={process.env.REACT_APP_BASE_URL}
         cookieSecure={window.location.protocol === 'https:'}
       >
         <SocketProvider>

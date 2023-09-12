@@ -144,10 +144,10 @@ export async function loginUser (loginFormData: LoginFormData) {
 
 export async function getAllCollections (): Promise<Collection[]> {
   try {
-    const token = getToken();
+    // const token = getToken();
     const response = await fetch(`${baseUrl}/collection/all`, {
       headers: {
-      'Authorization': `Bearer ${token}`,
+      // 'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
       },
       credentials: 'include'
