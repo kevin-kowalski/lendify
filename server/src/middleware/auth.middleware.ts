@@ -7,9 +7,10 @@ dotenv.config();
 const secretKey = process.env.JWT_SECRET as string;
 
 export async function authenticate (ctx: Context, next: Next): Promise<void> {
+  console.log('headers: ', ctx.headers );
   const token = ctx.headers.cookie?.split(';')[0].split('=')[1];
-  console.log(token);
-  console.log(ctx.headers.cookie);
+  console.log('token', token);
+  console.log('cookie', ctx.headers.cookie);
 
   if (!token) ctx.throw(401, { message: 'No token provided.' });
   
