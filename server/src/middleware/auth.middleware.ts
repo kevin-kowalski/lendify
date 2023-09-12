@@ -7,7 +7,6 @@ dotenv.config();
 const secretKey = process.env.JWT_SECRET as string;
 
 export async function authenticate (ctx: Context, next: Next): Promise<void> {
-  console.log('headers: ', ctx.headers );
   const token = ctx.headers.cookie?.split(';')[0].split('=')[1];
   console.log('token', token);
   console.log('cookie', ctx.headers.cookie);
@@ -21,7 +20,7 @@ export async function authenticate (ctx: Context, next: Next): Promise<void> {
     if (userExists) {
       ctx.userId = decodedToken.userId;
       ctx.location = decodedToken.geoLocation;
-      await next()
+      next()
     }
   } catch (error) {
     ctx.throw(401, { message: 'Invalid token.' });
