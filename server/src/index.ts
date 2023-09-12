@@ -35,6 +35,11 @@ app.use(cors({
 app.use(parser());
 app.use(router.routes());
 app.use(router.allowedMethods());
+app.use(async (ctx) => {
+  console.log('headers', ctx.headers);
+  console.log('authorization', ctx.headers.authorization);
+  console.log('cookie', ctx.headers.cookie);
+})
 
 ioConnect(io);
 console.log('🎪 Socket connected 🎪');
