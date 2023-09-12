@@ -35,6 +35,7 @@ app.use(async (ctx) => {
   console.log('headers', ctx.headers);
   console.log('authorization', ctx.headers.authorization);
   console.log('cookie', ctx.headers.cookie);
+  next();
 });
 app.use(parser());
 app.use(router.routes());
