@@ -31,7 +31,7 @@ app.use(cors({
   headers: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Credentials'],
   credentials: true,
 }));
-app.use(async (ctx) => {
+app.use(async (ctx, next) => {
   console.log('headers', ctx.headers);
   console.log('authorization', ctx.headers.authorization);
   console.log('cookie', ctx.headers.cookie);
