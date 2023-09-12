@@ -29,6 +29,8 @@ import Discover from "./components/discover/Discover";
 import Inbox from "./components/messaging/Inbox";
 import LandingPage from "./components/landing/LandingPage";
 
+const baseUrl = process.env.REACT_APP_BASE_URL;
+
 const router = createBrowserRouter([
   {
     path: '/landing',
@@ -160,7 +162,7 @@ export default function App() {
       <AuthProvider
         authType={'cookie'}
         authName={'_auth'}
-        cookieDomain={process.env.REACT_APP_BASE_URL}
+        cookieDomain={`${baseUrl}`}
         cookieSecure={window.location.protocol === 'https:'}
       >
         <SocketProvider>
