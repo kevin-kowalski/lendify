@@ -16,7 +16,7 @@ router.get('/test', (ctx) => {
 });
 
 // user routes
-router.get('/user/:id', user.getUserById);
+router.get('/user/:id', authenticate, user.getUserById);
 router.put('/user', authenticate, user.updateUser);
 router.delete('/user', authenticate, user.deleteUser);
 
