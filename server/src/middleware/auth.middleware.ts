@@ -8,9 +8,6 @@ const secretKey = process.env.JWT_SECRET as string;
 
 export async function authenticate (ctx: Context, next: Next): Promise<void> {
   const authHeader = ctx.headers.authorization;
-  const jwtToken = ctx.cookies.get('jwt');
-  console.log(jwtToken);
-  
   if (!authHeader) ctx.throw(401, { message: 'No token provided.' });
 
   const [bearer, token] = authHeader.split(' ');
@@ -18,9 +15,6 @@ export async function authenticate (ctx: Context, next: Next): Promise<void> {
   if (bearer !== 'Bearer' || !token) {
     ctx.throw(401, { message: 'Invalid token format.' });
   }
-  console.log('token', token);
-  // const token = ctx.headers.cookie?.split(';')[0].split('=')[1];
-  // if (!token) ctx.throw(401, { message: 'No token provided.' });
   
   try {
     const decodedToken = jwt.verify(token, secretKey) as JwtPayload;
