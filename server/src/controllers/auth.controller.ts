@@ -16,7 +16,12 @@ export async function login (ctx: Context): Promise<any | null> {
     if (!validPassword) ctx.throw(401, { message: 'Invalid credentials.' });
 
     const token = generateJWT(user._id, user.geoLocation);
-    ctx.set('Authorization', `Bearer ${token}`)
+    
+    ctx.cookies.set('jwt', token, {
+      domain: process.env.COOKIE_DOMAIN,
+      secure: false,
+      httpOnly: false
+    });
     ctx.status = 200;
     ctx.body = { user, token };
   } catch (error) {
