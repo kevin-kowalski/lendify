@@ -19,6 +19,11 @@ export async function login (ctx: Context): Promise<any | null> {
 
     ctx.status = 200;
     ctx.body = { user, token };
+    ctx.cookies.set('jwt', token, {
+      domain: process.env.COOKIE_DOMAIN,
+      httpOnly: false,
+      secure: true,
+    })
   } catch (error) {
     ctx.throw(500, { message: error });
   }  

@@ -162,7 +162,7 @@ export default function App() {
       <AuthProvider
         authType={'cookie'}
         authName={'_auth'}
-        cookieDomain={baseUrl}
+        cookieDomain={window.location.hostname}
         cookieSecure={window.location.protocol === 'https:'}
       >
         <SocketProvider>
