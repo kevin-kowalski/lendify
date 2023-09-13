@@ -8,7 +8,9 @@ const secretKey = process.env.JWT_SECRET as string;
 
 export async function authenticate (ctx: Context, next: Next): Promise<void> {
   const authHeader = ctx.headers.authorization;
-
+  const jwtToken = ctx.cookies.get('jwt');
+  console.log(jwtToken);
+  
   if (!authHeader) ctx.throw(401, { message: 'No token provided.' });
 
   const [bearer, token] = authHeader.split(' ');
