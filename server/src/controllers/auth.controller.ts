@@ -22,7 +22,7 @@ export async function login (ctx: Context): Promise<any | null> {
     ctx.cookies.set('jwt', token, {
       domain: process.env.COOKIE_DOMAIN,
       httpOnly: false,
-      secure: true,
+      secure: false,
     })
   } catch (error) {
     ctx.throw(500, { message: error });
